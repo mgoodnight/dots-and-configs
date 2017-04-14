@@ -1,0 +1,20 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  // Configure glob patterns for excluding files and folders.
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.env": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/_*": true,
+    "node_modules/": true,
+    "sessions/": true,
+    "logs/": true,
+  },
+
+  // Configure file associations to languages (e.g. '*.extension': 'html'). These have precedence over the default associations of the languages installed.
+  "files.associations": {
+    "*.tt": "html"
+  }
+}
