@@ -1,11 +1,10 @@
+export PERLBREW_HOME=/home/vagrant/.perlbrew
 source ~/perl5/perlbrew/etc/bashrc
 source ~/.bashrc
 
 export PERL_CPANM_OPT=' --mirror http://mirror.cc.columbia.edu/pub/software/cpan/ --mirror http://cpan.cse.msu.edu/ --mirror http://www.cpan.org/ --mirror http://cpan.perlnow.com/ --mirror http://cpan.mirror.facebook.net/ --mirror-only --cascade-search'
 
 alias l='ls -la'
-
-alias dzil_make_dist='perl ~/.dzil/add_to_dist.pl'
 
 if [ -z $PS1 ]
 then
