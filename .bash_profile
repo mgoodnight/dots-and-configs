@@ -1,4 +1,4 @@
-export PERLBREW_HOME=/home/vagrant/.perlbrew
+export PERLBREW_HOME=~/.perlbrew
 source ~/perl5/perlbrew/etc/bashrc
 source ~/.bashrc
 
