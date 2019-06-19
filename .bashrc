@@ -113,22 +113,51 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias npm-dev='PATH=$(npm bin):$PATH'
 
-# Vagrant garblob db
-alias gdb='mysql -h localhost -u root -p garblob'
-# Vagrant start Caveman API
-alias caveman='MOJO_CONFIG=vagrant plackup -s Starman -p 5000 --workers=2 -Mlocal::lib=local /home/ubuntu/caveman-api/script/caveman'
+. ~/.do-not-commit.sh
+
+# MySQL
+alias ms='mysql -h localhost -u root -proot'
+
+# Caveman API
+alias caveman='MOJO_MODE=development perl -Mlocal::lib=/Users/mgoodnight/Documents/caveman-api/local /Users/mgoodnight/Documents/caveman-api/local/bin/plackup -R /Users/mgoodnight/Documents/caveman-api/lib,/Users/mgoodnight/Documents/caveman-api/local -s Starman -p 5000 --workers=2 /Users/mgoodnight/Documents/caveman-api/script/caveman'
+alias cmworker='MOJO_MODE=development perl -Mlocal::lib=/Users/mgoodnight/Documents/caveman-api/local /Users/mgoodnight/Documents/caveman-api/script/caveman minion worker'
+
+# WebAPI
+alias webapi='PYTHONPATH=/Users/mgoodnight/Documents/tee-webapi ENVIRONMENT=development python /Users/mgoodnight/Documents/tee-webapi/webapi/app.py'
 
 # Git
 alias gd='git diff'
 alias gs='git status'
 alias gf='git fetch'
+alias gm='git checkout master && git pull origin master'
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
-export WORKON_HOME=~/.virtualenvs
+# NodeJS
+alias npm-dev='PATH=$(npm bin):$PATH'
+
+# Python
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export WORKON_HOME=~/pythonenvs
 . /usr/local/bin/virtualenvwrapper.sh
+
+alias pyt='ENVIRONMENT=development pytest --capture=sys '
+
+# Perl
+export PERLBREW_HOME=~/.perlbrew
+source ~/perl5/perlbrew/etc/bashrc
+
+export PERL_CPANM_OPT=' --mirror http://cpan.metacpan.org/ --mirror http://mirror.cc.columbia.edu/pub/software/cpan/ --mirror http://cpan.cse.msu.edu/ --mirror http://www.cpan.org/ --mirror http://cpan.perlnow.com/ --mirror http://cpan.mirror.facebook.net/ --mirror-only --cascade-search'
+
+alias pp='prove -Ilib -Mlocal::lib=local -vr '
+alias pt='find lib -type f -name '*.pm' | xargs perltidy -b'
+
+# Golang
+export PATH=$PATH:/usr/local/go/bin
+
