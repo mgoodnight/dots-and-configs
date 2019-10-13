@@ -113,6 +113,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+alias audres='sudo killall coreaudiod && sleep 3 && sudo kextunload /System/Library/Extensions/AppleHDA.kext && sleep 3 && sudo kextload /System/Library/Extensions/AppleHDA.kext'
 
 . ~/.do-not-commit.sh
 
@@ -120,11 +121,11 @@ fi
 alias ms='mysql -h localhost -u root -proot'
 
 # Caveman API
-alias caveman='MOJO_MODE=development perl -Mlocal::lib=/Users/mgoodnight/Documents/caveman-api/local /Users/mgoodnight/Documents/caveman-api/local/bin/plackup -R /Users/mgoodnight/Documents/caveman-api/lib,/Users/mgoodnight/Documents/caveman-api/local -s Starman -p 5000 --workers=2 /Users/mgoodnight/Documents/caveman-api/script/caveman'
-alias cmworker='MOJO_MODE=development perl -Mlocal::lib=/Users/mgoodnight/Documents/caveman-api/local /Users/mgoodnight/Documents/caveman-api/script/caveman minion worker'
+alias caveman='MOJO_MODE=development perl -Mlocal::lib=/Users/mgoodnight/teelicious/caveman-api/local /Users/mgoodnight/teelicious/caveman-api/local/bin/plackup -R /Users/mgoodnight/teelicious/caveman-api/lib,/Users/mgoodnight/teelicious/caveman-api/local -s Starman -p 5000 --workers=2 /Users/mgoodnight/teelicious/caveman-api/script/caveman'
+alias cmworker='MOJO_MODE=development perl -Mlocal::lib=/Users/mgoodnight/teelicious/caveman-api/local /Users/mgoodnight/teelicious/caveman-api/script/caveman minion worker'
 
 # WebAPI
-alias webapi='PYTHONPATH=/Users/mgoodnight/Documents/tee-webapi ENVIRONMENT=development python /Users/mgoodnight/Documents/tee-webapi/webapi/app.py'
+alias webapi='PYTHONPATH=/Users/mgoodnight/teelicious/tee-webapi ENVIRONMENT=development python /Users/mgoodnight/teelicious/tee-webapi/webapi/app.py'
 
 # Git
 alias gd='git diff'
@@ -137,8 +138,10 @@ parse_git_branch() {
 }
 export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
-# NodeJS
-alias npm-dev='PATH=$(npm bin):$PATH'
+# Node.js
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Python
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
@@ -160,4 +163,7 @@ alias pt='find lib -type f -name '*.pm' | xargs perltidy -b'
 
 # Golang
 export PATH=$PATH:/usr/local/go/bin
+
+# Redis
+alias redis='redis-server /usr/local/etc/redis.conf'
 
