@@ -113,6 +113,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# OS X OpenSSL fix
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+
 alias audres='sudo killall coreaudiod && sleep 3 && sudo kextunload /System/Library/Extensions/AppleHDA.kext && sleep 3 && sudo kextload /System/Library/Extensions/AppleHDA.kext'
 
 . ~/.do-not-commit.sh
@@ -144,7 +147,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Python
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 export WORKON_HOME=~/pythonenvs
@@ -167,3 +169,9 @@ export PATH=$PATH:/usr/local/go/bin
 # Redis
 alias redis='redis-server /usr/local/etc/redis.conf'
 
+# Android
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES5",
+    "sourceMap": true,
+    "outDir": "dist",
+    "lib": [ "ES5", "DOM" ],
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
+  ]
+}
+
